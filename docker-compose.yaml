@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  lmstudio-app:
+    image: lmstudio-app-image
+    build:
+      context: .
+    container_name: lmstudio-app-container
+    network_mode: host
+    gpus: all
+    volumes:
+    - /tmp/.X11-unix:/tmp/.X11-unix:rw # GUI  
+    - ${XAUTHORITY}:/root/.Xauthority:rw # GUI
+    - /run/dbus/system_bus_socket:/run/dbus/system_bus_socket:rw # D-Bus
+    - ./volumes:/lmstudio/volumes # for all files who shall be available in the container
+    - <your_host_path>:/root/.lmstudio/models
+    privileged: true
+    environment:
+      - DISPLAY=${DISPLAY} # GUI
+      - QT_X11_NO_MITSHM=1 # GUI
+      - XAUTHORITY=/root/.Xauthority # GUI
+    tty: true # Terminal
+    command: /opt/lmstudio/lm-studio --no-sandbox

@@ -2,4 +2,4 @@ To use this Docker image, download the LM Studio AppImage (https://lmstudio.ai/)
 
 Additionally, you should mount a local directory to `/root/.lmstudio/models` in your `compose.yaml` to persist your models.
 
-Make sure to change the base image, on top of the `Dockerfile`, regarting to your cuda version. Use always the cudnn_devel version of that base image.
+Make sure to change the base image, on top of the `Dockerfile`, regarding to your cuda version. Use always the cudnn_devel version of that base image.
